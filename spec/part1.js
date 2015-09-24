@@ -81,7 +81,6 @@
     });
 
     _.each = function(collection, iterator) {
-      //var ary=[];
       if (Array.isArray(collection)){
         for (var i=0; i<collection.length; i++){
           iterator(collection[i], i, collection);
@@ -245,11 +244,22 @@
       });
     });
 
-    // _.uniq = function(array, test) {
-    //   var ary=[];
-      
-    //   return ary;
-    //   };
+    _.uniq = function(array, test) {
+      var ary=[];
+      for (var i=0; i < array.length; i++){
+        var repeat=0;
+        for (var j=0; j<ary.length; j++){
+          if (array[i]==ary[j]){
+            repeat++;
+          }
+        }
+        if (repeat==0){
+          ary.push(array[i]);
+        }
+      }
+      return ary;
+    };
+
 
     describe('uniq', function() {
       it('should return all unique values contained in an unsorted array', function() {
