@@ -80,6 +80,20 @@
       });
     });
 
+    _.each = function(collection, iterator) {
+  
+      if (Array.isArray(collection)){
+        for (var i=0; i<collection.length; i++){
+          iterator(collection[i]);
+        }
+      } else {
+        for (var element in collection){
+          iterator(collection[element]);
+        }
+      }
+
+      };
+
     describe('each', function() {
       it('should iterate over arrays, providing access to the element, index, and array itself', function() {
         var animals = ['ant', 'bat', 'cat'];
@@ -129,6 +143,15 @@
       });
     });
 
+    _.indexOf = function(array, target) {
+      for (var i=0; i<array.length; i++){
+        if (array[i]==target)
+            return i;
+        }
+        return -1;
+      };
+
+    
     describe('indexOf', function() {
       it('should find 40 in the list', function() {
         var numbers = [10, 20, 30, 40, 50];
