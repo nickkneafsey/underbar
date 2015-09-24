@@ -2,9 +2,13 @@
   'use strict';
 
   describe('Part I', function() {
-
+    _.identity = function(val) {
+        return val;
+      };
     describe('identity', function() {
+      
       var uniqueObject = {};
+      
 
       it('should return whatever value is passed into it', function() {
         expect(_.identity(1)).to.equal(1);
@@ -14,7 +18,20 @@
       });
     });
 
+    _.first = function(array, idx) {
+        var ary=[];
+        if (idx==0){return [];}
+        if (idx>array.length){idx=array.length;}
+        if (typeof idx==='undefined'){return array[0];}
+        for (var i=0; i<idx; i++){
+          ary.push(array[i]);
+        }
+        return ary;
+      };
+
+    
     describe('first', function() {
+       
       it('should be able to pull out the first element of an array', function() {
         expect(_.first([1,2,3])).to.equal(1);
       });
@@ -32,7 +49,20 @@
       });
     });
 
+    _.last = function(array, idx) {
+        var ary=[];
+        if (idx==0){return [];}
+        if (typeof idx==='undefined'){return array[array.length - 1];}
+        if (idx>array.length){idx=array.length;}
+        var lastindex=array.length-1
+        for (var i=array.length-1; i>lastindex-idx; i--){
+          ary.unshift(array[i]);
+        }
+        return ary;
+      };
+
     describe('last', function() {
+
       it('should pull the last element from an array', function() {
         expect(_.last([1,2,3])).to.equal(3);
       });
