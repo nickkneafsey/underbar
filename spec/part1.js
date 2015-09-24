@@ -246,6 +246,12 @@
       });
     });
 
+    // _.uniq = function(array, test) {
+    //   var ary=[];
+      
+    //   return ary;
+    //   };
+
     describe('uniq', function() {
       it('should return all unique values contained in an unsorted array', function() {
         var numbers = [1, 2, 1, 3, 1, 4];
@@ -286,6 +292,14 @@
         expect(mappedNumbers).to.not.equal(numbers);
       });
     });
+
+    _.pluck = function(array, test) {
+      var ary=[];
+      for (var i=0; i<array.length; i++){
+        ary.push(array[i][test]);
+      }
+      return ary;
+      };
 
     describe('pluck', function() {
       it('should return values contained at a user-defined property', function() {
