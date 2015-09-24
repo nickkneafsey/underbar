@@ -178,6 +178,16 @@
       });
     });
 
+    _.filter = function(array, test) {
+      var ary=[];
+      for (var i=0; i<array.length; i++){
+        if (test(array[i])){
+          ary.push(array[i])
+        }
+      }
+      return ary;
+      };
+
     describe('filter', function() {
       it('should return all even numbers in an array', function() {
         var isEven = function(num) { return num % 2 === 0; };
@@ -201,6 +211,16 @@
         expect(evens).to.not.equal(numbers);
       });
     });
+
+    _.reject = function(array, test) {
+      var ary=[];
+      for (var i=0; i<array.length; i++){
+        if (!test(array[i])){
+          ary.push(array[i])
+        }
+      }
+      return ary;
+      };
 
     describe('reject', function() {
       it('should reject all even numbers', function() {
