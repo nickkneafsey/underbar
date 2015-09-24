@@ -81,17 +81,16 @@
     });
 
     _.each = function(collection, iterator) {
-  
+      //var ary=[];
       if (Array.isArray(collection)){
         for (var i=0; i<collection.length; i++){
-          iterator(collection[i]);
+          iterator(collection[i], i, collection);
         }
       } else {
         for (var element in collection){
-          iterator(collection[element]);
+          iterator(collection[element], element, collection);
         }
       }
-
       };
 
     describe('each', function() {
@@ -322,6 +321,13 @@
         expect(people).to.eql([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
       });
     });
+
+    _.reduce = function(array, test) {
+      var ary=[];
+      
+      return ary;
+    };
+
 
     describe('reduce', function() {
       it('should be able to sum up an array', function() {
