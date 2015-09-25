@@ -283,6 +283,14 @@
       });
     });
 
+    _.map = function(array, iterator) {
+      var ary=[];
+      for (var i=0; i<array.length; i++){
+        ary.push(iterator(array[i]));
+      }
+      return ary;
+    };
+
     describe('map', function() {
       it('should apply a function to every value in an array', function() {
         var doubledNumbers = _.map([1, 2, 3], function(num) {
@@ -333,19 +341,19 @@
     });
 
     _.reduce = function(array, accumulator, start) {
-  var total=start;
-  if (typeof start==='undefined'){
-    total=array[0];
-  for (var i=1; i<array.length; i++){
-    total=accumulator(total, array[i]); 
-  }
-  return total;
-}
-  for (var i=0; i<array.length; i++){
-    total=accumulator(total, array[i]);
-  }
-  return total;
-};
+      var total=start;
+      if (typeof start==='undefined'){
+        total=array[0];
+        for (var i=1; i<array.length; i++){
+          total=accumulator(total, array[i]); 
+        }
+        return total;
+      }
+      for (var i=0; i<array.length; i++){
+        total=accumulator(total, array[i]);
+      }
+      return total;
+    };
 
 
     describe('reduce', function() {
