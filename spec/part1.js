@@ -332,11 +332,20 @@
       });
     });
 
-    _.reduce = function(array, test) {
-      var ary=[];
-      
-      return ary;
-    };
+    _.reduce = function(array, accumulator, start) {
+  var total=start;
+  if (typeof start==='undefined'){
+    total=array[0];
+  for (var i=1; i<array.length; i++){
+    total=accumulator(total, array[i]); 
+  }
+  return total;
+}
+  for (var i=0; i<array.length; i++){
+    total=accumulator(total, array[i]);
+  }
+  return total;
+};
 
 
     describe('reduce', function() {
