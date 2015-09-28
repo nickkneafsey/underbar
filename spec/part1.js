@@ -178,11 +178,11 @@
 
     _.filter = function(array, test) {
       var ary=[];
-      for (var i=0; i<array.length; i++){
-        if (test(array[i])){
-          ary.push(array[i])
+      _.each(array, function(a){
+        if (test(a)){
+          ary.push(a);
         }
-      }
+      })
       return ary;
       };
 
@@ -212,11 +212,11 @@
 
     _.reject = function(array, test) {
       var ary=[];
-      for (var i=0; i<array.length; i++){
-        if (!test(array[i])){
-          ary.push(array[i])
+      _.each(array, function(a){
+        if (!test(a)){
+          ary.push(a);
         }
-      }
+      })
       return ary;
       };
 
