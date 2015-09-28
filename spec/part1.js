@@ -312,9 +312,9 @@
 
     _.pluck = function(array, test) {
       var ary=[];
-      for (var i=0; i<array.length; i++){
-        ary.push(array[i][test]);
-      }
+      _.each(array, function(a){
+        ary.push(a[test]);
+      });
       return ary;
       };
 
