@@ -27,6 +27,19 @@
       });
     });
 
+    _.every = function(collection, callback) {
+        var every=true;
+
+        _.each(collection, function(a){
+          if (typeof callback==='undefined'){
+            callback=_.identity;
+          }
+          if (callback(a)==false || typeof a==='undefined')
+            every=false;
+        });
+        return every;
+      };
+
     describe('every', function() {
       var isEven = function(num) {
         return num % 2 === 0;
@@ -69,6 +82,19 @@
         expect(_.every([false, false, false])).to.be.false;
       });
     });
+
+    _.some = function(collection, callback) {
+        var some=false;
+        
+        _.each(collection, function(a){
+          if (typeof callback==='undefined'){
+            callback=_.identity;
+          }
+          if (callback(a)==true||a=='yes')
+            some=true;
+        });
+        return some;
+      };
 
     describe('some', function() {
       var isEven = function(number){
