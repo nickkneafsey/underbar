@@ -285,9 +285,9 @@
 
     _.map = function(array, iterator) {
       var ary=[];
-      for (var i=0; i<array.length; i++){
-        ary.push(iterator(array[i]));
-      }
+      _.each(array, function(a){
+        ary.push(iterator(a));
+      });
       return ary;
     };
 
