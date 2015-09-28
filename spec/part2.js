@@ -2,6 +2,17 @@
   'use strict';
 
   describe('Part II', function() {
+      _.contains = function(collection, value) {
+        var contain=false;
+        if (value==='undefined')
+          return contain;
+        _.each(collection, function(x){
+          if (x==value)
+            contain=true;
+        })
+        return contain;
+      };
+
     describe('contains', function() {
       it('should return false if a collection does not contain a user-specified value', function() {
         expect(_.contains([4, 5, 6], 2)).to.be.false;
