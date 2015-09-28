@@ -245,18 +245,18 @@
     });
 
     _.uniq = function(array, test) {
-      var ary=[];
-      for (var i=0; i < array.length; i++){
-        var repeat=0;
-        for (var j=0; j<ary.length; j++){
-          if (array[i]==ary[j]){
+      var ary = [];
+      _.each(array, function(a){
+        var repeat = 0;
+        _.each(ary, function(b){
+          if (a==b){
             repeat++;
-          }
-        }
+          };
+        });
         if (repeat==0){
-          ary.push(array[i]);
+          ary.push(a);
         }
-      }
+      });
       return ary;
     };
 
