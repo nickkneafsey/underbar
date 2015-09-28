@@ -38,15 +38,8 @@
   // Like first, but for the last elements. If n is undefined, return just the
   // last element.
   _.last = function(array, n) {
-    var ary=[];
-        if (n==0){return [];}
-        if (typeof n==='undefined'){return array[array.length - 1];}
-        if (n>array.length){n=array.length;}
-        var lastindex=array.length-1
-        for (var i=array.length-1; i>lastindex-n; i--){
-          ary.unshift(array[i]);
-        }
-        return ary;
+    if (n>array.length){n=array.length;}
+    return n === undefined ? array[array.length - 1] : array.slice(array.length - n, array.length);
   };
 
   // Call iterator(value, key, collection) for each element of collection.
@@ -81,14 +74,6 @@
     });
 
     return result;
-
-    // _.indexOf = function(array, target) {
-    //   for (var i=0; i<array.length; i++){
-    //     if (array[i]==target)
-    //         return i;
-    //     }
-    //     return -1;
-    //   };
 
   };
 
