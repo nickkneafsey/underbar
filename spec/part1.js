@@ -349,9 +349,9 @@
         }
         return total;
       }
-      for (var i=0; i<array.length; i++){
-        total=accumulator(total, array[i]);
-      }
+      _.each(array,function(a){
+        total = accumulator(total, a);
+      });
       return total;
     };
 
