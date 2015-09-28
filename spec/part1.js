@@ -2,9 +2,9 @@
   'use strict';
 
   describe('Part I', function() {
-    _.identity = function(val) {
-        return val;
-      };
+    // _.identity = function(val) {
+    //     return val;
+    //   };
     describe('identity', function() {
       
       var uniqueObject = {};
@@ -49,17 +49,17 @@
       });
     });
 
-    _.last = function(array, idx) {
-        var ary=[];
-        if (idx==0){return [];}
-        if (typeof idx==='undefined'){return array[array.length - 1];}
-        if (idx>array.length){idx=array.length;}
-        var lastindex=array.length-1
-        for (var i=array.length-1; i>lastindex-idx; i--){
-          ary.unshift(array[i]);
-        }
-        return ary;
-      };
+    // _.last = function(array, idx) {
+    //     var ary=[];
+    //     if (idx==0){return [];}
+    //     if (typeof idx==='undefined'){return array[array.length - 1];}
+    //     if (idx>array.length){idx=array.length;}
+    //     var lastindex=array.length-1
+    //     for (var i=array.length-1; i>lastindex-idx; i--){
+    //       ary.unshift(array[i]);
+    //     }
+    //     return ary;
+    //   };
 
     describe('last', function() {
 
@@ -80,17 +80,17 @@
       });
     });
 
-    _.each = function(collection, iterator) {
-      if (Array.isArray(collection)){
-        for (var i=0; i<collection.length; i++){
-          iterator(collection[i], i, collection);
-        }
-      } else {
-        for (var element in collection){
-          iterator(collection[element], element, collection);
-        }
-      }
-      };
+    // _.each = function(collection, iterator) {
+    //   // if (Array.isArray(collection)){
+    //   //   for (var i=0; i<collection.length; i++){
+    //   //     iterator(collection[i], i, collection);
+    //   //   }
+    //   // } else {
+    //   //   for (var element in collection){
+    //   //     iterator(collection[element], element, collection);
+    //   //   }
+    //   // }
+    //   };
 
     describe('each', function() {
       it('should iterate over arrays, providing access to the element, index, and array itself', function() {
@@ -141,13 +141,13 @@
       });
     });
 
-    _.indexOf = function(array, target) {
-      for (var i=0; i<array.length; i++){
-        if (array[i]==target)
-            return i;
-        }
-        return -1;
-      };
+    // _.indexOf = function(array, target) {
+    //   for (var i=0; i<array.length; i++){
+    //     if (array[i]==target)
+    //         return i;
+    //     }
+    //     return -1;
+    //   };
 
     
     describe('indexOf', function() {
@@ -176,15 +176,15 @@
       });
     });
 
-    _.filter = function(array, test) {
-      var ary=[];
-      _.each(array, function(a){
-        if (test(a)){
-          ary.push(a);
-        }
-      })
-      return ary;
-      };
+    // _.filter = function(array, test) {
+    //   var ary=[];
+    //   _.each(array, function(a){
+    //     if (test(a)){
+    //       ary.push(a);
+    //     }
+    //   })
+    //   return ary;
+    //   };
 
     describe('filter', function() {
       it('should return all even numbers in an array', function() {
@@ -210,15 +210,15 @@
       });
     });
 
-    _.reject = function(array, test) {
-      var ary=[];
-      _.each(array, function(a){
-        if (!test(a)){
-          ary.push(a);
-        }
-      })
-      return ary;
-      };
+    // _.reject = function(array, test) {
+    //   var ary=[];
+    //   _.each(array, function(a){
+    //     if (!test(a)){
+    //       ary.push(a);
+    //     }
+    //   })
+    //   return ary;
+    //   };
 
     describe('reject', function() {
       it('should reject all even numbers', function() {
@@ -244,21 +244,21 @@
       });
     });
 
-    _.uniq = function(array, test) {
-      var ary = [];
-      _.each(array, function(a){
-        var repeat = 0;
-        _.each(ary, function(b){
-          if (a==b){
-            repeat++;
-          };
-        });
-        if (repeat==0){
-          ary.push(a);
-        }
-      });
-      return ary;
-    };
+    // _.uniq = function(array, test) {
+    //   var ary = [];
+    //   _.each(array, function(a){
+    //     var repeat = 0;
+    //     _.each(ary, function(b){
+    //       if (a==b){
+    //         repeat++;
+    //       };
+    //     });
+    //     if (repeat==0){
+    //       ary.push(a);
+    //     }
+    //   });
+    //   return ary;
+    // };
 
 
     describe('uniq', function() {
@@ -283,13 +283,13 @@
       });
     });
 
-    _.map = function(array, iterator) {
-      var ary=[];
-      _.each(array, function(a){
-        ary.push(iterator(a));
-      });
-      return ary;
-    };
+    // _.map = function(array, iterator) {
+    //   var ary=[];
+    //   _.each(array, function(a){
+    //     ary.push(iterator(a));
+    //   });
+    //   return ary;
+    // };
 
     describe('map', function() {
       it('should apply a function to every value in an array', function() {
@@ -310,13 +310,13 @@
       });
     });
 
-    _.pluck = function(array, test) {
-      var ary=[];
-      _.each(array, function(a){
-        ary.push(a[test]);
-      });
-      return ary;
-      };
+    // _.pluck = function(array, test) {
+    //   var ary=[];
+    //   _.each(array, function(a){
+    //     ary.push(a[test]);
+    //   });
+    //   return ary;
+    //   };
 
     describe('pluck', function() {
       it('should return values contained at a user-defined property', function() {
@@ -340,20 +340,20 @@
       });
     });
 
-    _.reduce = function(array, accumulator, start) {
-      var total=start;
-      if (typeof start==='undefined'){
-        total=array[0];
-        for (var i=1; i<array.length; i++){
-          total=accumulator(total, array[i]); 
-        }
-        return total;
-      }
-      _.each(array,function(a){
-        total = accumulator(total, a);
-      });
-      return total;
-    };
+    // _.reduce = function(array, accumulator, start) {
+    //   var total=start;
+    //   if (typeof start==='undefined'){
+    //     total=array[0];
+    //     for (var i=1; i<array.length; i++){
+    //       total=accumulator(total, array[i]); 
+    //     }
+    //     return total;
+    //   }
+    //   _.each(array,function(a){
+    //     total = accumulator(total, a);
+    //   });
+    //   return total;
+    // };
 
 
     describe('reduce', function() {

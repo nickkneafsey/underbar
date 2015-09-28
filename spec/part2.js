@@ -2,16 +2,16 @@
   'use strict';
 
   describe('Part II', function() {
-      _.contains = function(collection, value) {
-        var contain=false;
-        if (value==='undefined')
-          return contain;
-        _.each(collection, function(x){
-          if (x==value)
-            contain=true;
-        })
-        return contain;
-      };
+      // _.contains = function(collection, value) {
+      //   var contain=false;
+      //   if (value==='undefined')
+      //     return contain;
+      //   _.each(collection, function(x){
+      //     if (x==value)
+      //       contain=true;
+      //   })
+      //   return contain;
+      // };
 
     describe('contains', function() {
       it('should return false if a collection does not contain a user-specified value', function() {
@@ -27,18 +27,18 @@
       });
     });
 
-    _.every = function(collection, callback) {
-        var every=true;
+    // _.every = function(collection, callback) {
+    //   //   var every=true;
 
-        _.each(collection, function(a){
-          if (typeof callback==='undefined'){
-            callback=_.identity;
-          }
-          if (callback(a)==false || typeof a==='undefined')
-            every=false;
-        });
-        return every;
-      };
+    //   //   _.each(collection, function(a){
+    //   //     if (typeof callback==='undefined'){
+    //   //       callback=_.identity;
+    //   //     }
+    //   //     if (callback(a)==false || typeof a==='undefined')
+    //   //       every=false;
+    //   //   });
+    //   //   return every;
+    //   // };
 
     describe('every', function() {
       var isEven = function(num) {
@@ -83,18 +83,18 @@
       });
     });
 
-    _.some = function(collection, callback) {
-        var some=false;
+    // _.some = function(collection, callback) {
+    //     var some=false;
         
-        _.each(collection, function(a){
-          if (typeof callback==='undefined'){
-            callback=_.identity;
-          }
-          if (callback(a)==true||a=='yes')
-            some=true;
-        });
-        return some;
-      };
+    //     _.each(collection, function(a){
+    //       if (typeof callback==='undefined'){
+    //         callback=_.identity;
+    //       }
+    //       if (callback(a)==true||a=='yes')
+    //         some=true;
+    //     });
+    //     return some;
+    //   };
 
     describe('some', function() {
       var isEven = function(number){
@@ -140,6 +140,14 @@
         expect(_.some([false, false, false])).to.be.false;
       });
     });
+    
+    _.extend = function(props) {
+        var ob={}
+        for (var i=0; i<arguments.length; i++){
+
+        }
+        return ob;
+      };
 
     describe('extend', function() {
       it('returns the first argument', function() {
