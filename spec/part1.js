@@ -2,13 +2,9 @@
   'use strict';
 
   describe('Part I', function() {
-    // _.identity = function(val) {
-    //     return val;
-    //   };
+
     describe('identity', function() {
-      
       var uniqueObject = {};
-      
 
       it('should return whatever value is passed into it', function() {
         expect(_.identity(1)).to.equal(1);
@@ -18,20 +14,7 @@
       });
     });
 
-    _.first = function(array, idx) {
-        var ary=[];
-        if (idx==0){return [];}
-        if (idx>array.length){idx=array.length;}
-        if (typeof idx==='undefined'){return array[0];}
-        for (var i=0; i<idx; i++){
-          ary.push(array[i]);
-        }
-        return ary;
-      };
-
-    
     describe('first', function() {
-       
       it('should be able to pull out the first element of an array', function() {
         expect(_.first([1,2,3])).to.equal(1);
       });
@@ -49,20 +32,7 @@
       });
     });
 
-    // _.last = function(array, idx) {
-    //     var ary=[];
-    //     if (idx==0){return [];}
-    //     if (typeof idx==='undefined'){return array[array.length - 1];}
-    //     if (idx>array.length){idx=array.length;}
-    //     var lastindex=array.length-1
-    //     for (var i=array.length-1; i>lastindex-idx; i--){
-    //       ary.unshift(array[i]);
-    //     }
-    //     return ary;
-    //   };
-
     describe('last', function() {
-
       it('should pull the last element from an array', function() {
         expect(_.last([1,2,3])).to.equal(3);
       });
@@ -79,18 +49,6 @@
         expect(_.last([1,2,3], 5)).to.eql([1, 2, 3]);
       });
     });
-
-    // _.each = function(collection, iterator) {
-    //   // if (Array.isArray(collection)){
-    //   //   for (var i=0; i<collection.length; i++){
-    //   //     iterator(collection[i], i, collection);
-    //   //   }
-    //   // } else {
-    //   //   for (var element in collection){
-    //   //     iterator(collection[element], element, collection);
-    //   //   }
-    //   // }
-    //   };
 
     describe('each', function() {
       it('should iterate over arrays, providing access to the element, index, and array itself', function() {
@@ -141,15 +99,6 @@
       });
     });
 
-    // _.indexOf = function(array, target) {
-    //   for (var i=0; i<array.length; i++){
-    //     if (array[i]==target)
-    //         return i;
-    //     }
-    //     return -1;
-    //   };
-
-    
     describe('indexOf', function() {
       it('should find 40 in the list', function() {
         var numbers = [10, 20, 30, 40, 50];
@@ -176,16 +125,6 @@
       });
     });
 
-    // _.filter = function(array, test) {
-    //   var ary=[];
-    //   _.each(array, function(a){
-    //     if (test(a)){
-    //       ary.push(a);
-    //     }
-    //   })
-    //   return ary;
-    //   };
-
     describe('filter', function() {
       it('should return all even numbers in an array', function() {
         var isEven = function(num) { return num % 2 === 0; };
@@ -209,16 +148,6 @@
         expect(evens).to.not.equal(numbers);
       });
     });
-
-    // _.reject = function(array, test) {
-    //   var ary=[];
-    //   _.each(array, function(a){
-    //     if (!test(a)){
-    //       ary.push(a);
-    //     }
-    //   })
-    //   return ary;
-    //   };
 
     describe('reject', function() {
       it('should reject all even numbers', function() {
@@ -244,23 +173,6 @@
       });
     });
 
-    // _.uniq = function(array, test) {
-    //   var ary = [];
-    //   _.each(array, function(a){
-    //     var repeat = 0;
-    //     _.each(ary, function(b){
-    //       if (a==b){
-    //         repeat++;
-    //       };
-    //     });
-    //     if (repeat==0){
-    //       ary.push(a);
-    //     }
-    //   });
-    //   return ary;
-    // };
-
-
     describe('uniq', function() {
       it('should return all unique values contained in an unsorted array', function() {
         var numbers = [1, 2, 1, 3, 1, 4];
@@ -283,14 +195,6 @@
       });
     });
 
-    // _.map = function(array, iterator) {
-    //   var ary=[];
-    //   _.each(array, function(a){
-    //     ary.push(iterator(a));
-    //   });
-    //   return ary;
-    // };
-
     describe('map', function() {
       it('should apply a function to every value in an array', function() {
         var doubledNumbers = _.map([1, 2, 3], function(num) {
@@ -309,14 +213,6 @@
         expect(mappedNumbers).to.not.equal(numbers);
       });
     });
-
-    // _.pluck = function(array, test) {
-    //   var ary=[];
-    //   _.each(array, function(a){
-    //     ary.push(a[test]);
-    //   });
-    //   return ary;
-    //   };
 
     describe('pluck', function() {
       it('should return values contained at a user-defined property', function() {
@@ -339,22 +235,6 @@
         expect(people).to.eql([{ name: 'moe', age: 30 }, { name: 'curly', age: 50 }]);
       });
     });
-
-    // _.reduce = function(array, accumulator, start) {
-    //   var total=start;
-    //   if (typeof start==='undefined'){
-    //     total=array[0];
-    //     for (var i=1; i<array.length; i++){
-    //       total=accumulator(total, array[i]); 
-    //     }
-    //     return total;
-    //   }
-    //   _.each(array,function(a){
-    //     total = accumulator(total, a);
-    //   });
-    //   return total;
-    // };
-
 
     describe('reduce', function() {
       it('should be able to sum up an array', function() {
