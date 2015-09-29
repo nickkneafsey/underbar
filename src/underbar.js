@@ -99,6 +99,9 @@
         }
       })
       return ary;
+
+    //return _.filter(collection, !test);
+
   };
 
   // Produce a duplicate-free version of the array.
@@ -144,11 +147,7 @@
     // TIP: map is really handy when you want to transform an array of
     // values into a new array of values. _.pluck() is solved for you
     // as an example of this.
-    // var ary=[];
-    //   _.each(array, function(a){
-    //     ary.push(a[test]);
-    //   });
-    //   return ary;
+    
 
     return _.map(collection, function(item){
       return item[key];
@@ -208,14 +207,14 @@
     // TIP: Try re-using reduce() here.
     var every=true;
 
-        _.each(collection, function(a){
-          if (typeof iterator==='undefined'){
-            iterator=_.identity;
-          }
-          if (iterator(a)==false || typeof a==='undefined')
-            every=false;
-        });
-        return every;
+    _.each(collection, function(a){
+      if (typeof iterator==='undefined'){
+        iterator=_.identity;
+      }
+      if (iterator(a)==false || typeof a==='undefined')
+        every=false;
+    });
+    return every;
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
@@ -254,11 +253,30 @@
   //     bla: "even more stuff"
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
+    
+    // for (var i=0; i<arguments.length; i++){
+    //   _.each(arguments[i], function(value, key){
+    //     obj.key=value;
+    //   });
+    // }
+    for (var i=0; i<arguments.length; i++){
+      for (var element in arguments[i]){
+        obj[element] = arguments[i][element];
+      }
+    }
+    return obj;
   };
 
   // Like extend, but doesn't ever overwrite a key that already
   // exists in obj
   _.defaults = function(obj) {
+    for (var i=0; i<arguments.length; i++){
+      for (var element in arguments[i]){
+        if (!obj.hasOwnProperty(element))
+          obj[element] = arguments[i][element];
+      }
+    }
+    return obj;
   };
 
 
