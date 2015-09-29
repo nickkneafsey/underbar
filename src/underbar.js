@@ -79,7 +79,7 @@
 
   // Return all elements of an array that pass a truth test.
   _.filter = function(collection, test) {
-    var ary=[];
+    var ary = [];
       _.each(collection, function(a){
         if (test(a)){
           ary.push(a);
@@ -92,16 +92,12 @@
   _.reject = function(collection, test) {
     // TIP: see if you can re-use _.filter() here, without simply
     // copying code in and modifying it
-    var ary=[];
-      _.each(collection, function(a){
-        if (!test(a)){
-          ary.push(a);
-        }
-      })
-      return ary;
-
-    //return _.filter(collection, !test);
-
+    
+    return _.filter(collection, function(a){
+      if (!test(a)){
+        return a;
+      }
+    });
   };
 
   // Produce a duplicate-free version of the array.
@@ -110,11 +106,11 @@
       _.each(array, function(a){
         var repeat = 0;
         _.each(ary, function(b){
-          if (a==b){
+          if (a === b){
             repeat++;
           };
         });
-        if (repeat==0){
+        if (repeat === 0){
           ary.push(a);
         }
       });
@@ -128,10 +124,10 @@
     // like each(), but in addition to running the operation on all
     // the members, it also maintains an array of results.
     var ary=[];
-      _.each(collection, function(a){
-        ary.push(iterator(a));
-      });
-      return ary;
+    _.each(collection, function(a){
+      ary.push(iterator(a));
+    });
+    return ary;
   };
 
   /*
@@ -205,14 +201,14 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    var every=true;
+    var every = true;
 
     _.each(collection, function(a){
       if (typeof iterator==='undefined'){
-        iterator=_.identity;
+        iterator = _.identity;
       }
-      if (iterator(a)==false || typeof a==='undefined')
-        every=false;
+      if (iterator(a) == false || typeof a=='undefined')
+        every = false;
     });
     return every;
   };
@@ -221,14 +217,14 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-      var some=false;
+      var some = false;
         
         _.each(collection, function(a){
-          if (typeof iterator==='undefined'){
-            iterator=_.identity;
+          if (typeof iterator === 'undefined'){
+            iterator = _.identity;
           }
-          if (iterator(a)==true||a=='yes')
-            some=true;
+          if (iterator(a) == true || a == 'yes')
+            some = true;
         });
         return some;
   };
@@ -254,11 +250,6 @@
   //   }); // obj1 now contains key1, key2, key3 and bla
   _.extend = function(obj) {
     
-    // for (var i=0; i<arguments.length; i++){
-    //   _.each(arguments[i], function(value, key){
-    //     obj.key=value;
-    //   });
-    // }
     for (var i=0; i<arguments.length; i++){
       for (var element in arguments[i]){
         obj[element] = arguments[i][element];
@@ -324,10 +315,10 @@
     return function(){
       var test = "";
       var args = Array.prototype.slice.call(arguments, 1);
-      for (var i=0; i<args.length; i++){
+      for (var i = 0; i < args.length; i++){
         test+=args[i];
-        if(i<args.length - 1)
-          test+=", "
+        if(i < args.length - 1)
+          test += ", "
       }
       if (!results.hasOwnProperty(test)){
         results[test]=func.apply(this, arguments);
