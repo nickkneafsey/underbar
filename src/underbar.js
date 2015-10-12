@@ -390,6 +390,21 @@
   // Example:
   // _.zip(['a','b','c','d'], [1,2,3]) returns [['a',1], ['b',2], ['c',3], ['d',undefined]]
   _.zip = function() {
+    var newArray=[];
+    var longest=0;
+    for (var i = 0; i<arguments.length; i++){
+      if (arguments[i].length > longest)
+        longest=arguments[i].length;
+    }
+    for (var i = 0; i<arguments.length; i++){
+      for (var j=0; j<longest; j++){
+        if (typeof(newArray[j]) == "undefined"){
+          newArray[j]=[];
+        }
+        newArray[j].push(arguments[i][j]);
+      }
+    }
+    return newArray;
   };
 
   // Takes a multidimensional array and converts it to a one-dimensional array.
@@ -402,11 +417,35 @@
   // Takes an arbitrary number of arrays and produces an array that contains
   // every item shared between all the passed-in arrays.
   _.intersection = function() {
+    var newArray=[];
+
+    for (var j=0; j<arguments[0].length; j++){
+      var contained=true;
+      for (var i=0; i<arguments.length; i++){
+        if (_.indexOf(arguments[i], arguments[0][j])==-1)
+          contained=false;
+      }
+      if(contained==true)
+        newArray.push(arguments[0][j]);
+    }
+    return newArray;
   };
 
   // Take the difference between one array and a number of other arrays.
   // Only the elements present in just the first array will remain.
   _.difference = function(array) {
+    var newArray=[];
+
+    for (var j=0; j<arguments[0].length; j++){
+      var contained=false;
+      for (var i=1; i<arguments.length; i++){
+        if (_.indexOf(arguments[i], arguments[0][j])!==-1)
+          contained=true;
+      }
+      if(contained==false)
+        newArray.push(arguments[0][j]);
+    }
+    return newArray;
   };
 
   // Returns a function, that, when invoked, will only be triggered at most once
