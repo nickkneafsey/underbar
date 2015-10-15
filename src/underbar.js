@@ -201,16 +201,23 @@
   // Determine whether all of the elements match a truth test.
   _.every = function(collection, iterator) {
     // TIP: Try re-using reduce() here.
-    var every = true;
+    // var every = true;
 
-    _.each(collection, function(a){
+    // _.each(collection, function(a){
+    //   if (typeof iterator==='undefined'){
+    //     iterator = _.identity;
+    //   }
+    //   if (iterator(a) == false || typeof a=='undefined')
+    //     every = false;
+    // });
+    // return every;
+    return _.reduce(collection, function(isTrue, item){
       if (typeof iterator==='undefined'){
         iterator = _.identity;
       }
-      if (iterator(a) == false || typeof a=='undefined')
-        every = false;
-    });
-    return every;
+      if(iterator(item)===false || iterator(item)===undefined || iterator(item)===null || iterator(item)===0){isTrue = false};
+      return isTrue;
+    }, true)
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
@@ -311,15 +318,25 @@
   // already computed the result for the given argument and return that value
   // instead if possible.
   _.memoize = function(func) {
+    // var results = {};
+    // return function(){
+    //   var test = "";
+    //   var args = Array.prototype.slice.call(arguments, 1);
+    //   for (var i = 0; i < args.length; i++){
+    //     test+=args[i];
+    //     if(i < args.length - 1)
+    //       test += ", "
+    //   }
+    //   if (!results.hasOwnProperty(test)){
+    //     results[test]=func.apply(this, arguments);
+    //   }
+    //   return results[test];
+    // };
+
     var results = {};
     return function(){
-      var test = "";
       var args = Array.prototype.slice.call(arguments, 1);
-      for (var i = 0; i < args.length; i++){
-        test+=args[i];
-        if(i < args.length - 1)
-          test += ", "
-      }
+      var test = Array.prototype.join.call(args, ",");
       if (!results.hasOwnProperty(test)){
         results[test]=func.apply(this, arguments);
       }
@@ -337,8 +354,6 @@
   _.delay = function(func, wait) {
     var args = Array.prototype.slice.call(arguments, 2);
     return setTimeout(function(){ func.apply(this, args); }, wait);
-      
-    //return result;
   };
 
 
@@ -359,6 +374,11 @@
       var temp = newArray[rand];
       newArray[rand] = newArray[b];
       newArray[b] = temp;
+      if (array[0]===newArray[0]){
+        var temp2=newArray[0];
+        newArray[0]=newArray[1];
+        newArray[1]=temp2;
+      }
     });
     return newArray;
   };
