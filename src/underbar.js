@@ -216,6 +216,7 @@
         iterator = _.identity;
       }
       if(iterator(item)===false || iterator(item)===undefined || iterator(item)===null || iterator(item)===0){isTrue = false};
+      
       return isTrue;
     }, true)
   };
@@ -224,16 +225,24 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-      var some = false;
+      // var some = false;
         
-        _.each(collection, function(a){
-          if (typeof iterator === 'undefined'){
+      //   _.each(collection, function(a){
+      //     if (typeof iterator === 'undefined'){
+      //       iterator = _.identity;
+      //     }
+      //     if (iterator(a) == true || a == 'yes')
+      //       some = true;
+      //   });
+      //   return some;
+      return _.reduce(collection, function(isTrue, item){
+        if (typeof iterator === 'undefined'){
             iterator = _.identity;
-          }
-          if (iterator(a) == true || a == 'yes')
-            some = true;
-        });
-        return some;
+        }
+        if (iterator(item)===true || iterator(item)== 1 || typeof iterator(item)=="string"){isTrue = true};
+        return isTrue;
+      }, false)
+      
   };
 
 
