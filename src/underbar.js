@@ -406,10 +406,10 @@
   _.invoke = function(collection, functionOrKey, args) {
     var newArray=[];
     //code not working for second part of suite
-    //if (typeof(functionOrKey)==="string"){fucntionOrKey=window[functionOrKey](args);}
+    
     _.each(collection, function(item){
+      if (typeof(functionOrKey)==="string"){functionOrKey=item[functionOrKey];}
       newArray.push(functionOrKey.apply(item, args));
-
     })
     return newArray;
     
@@ -423,14 +423,14 @@
     //insertion sort--not working quite correctly
 
     var newArr=collection.slice();
-    for(var i=0; i < newArr.length; i++){
+    for(var i=0; i < newArr.length; i++) {
       var ob = newArr[i]; 
-      for(var j = i - 1; j >= 0 && (newArr[j][iterator] > ob[iterator]); j--){
+      for(var j = i - 1; j >= 0 && (newArr[j][iterator] > ob[iterator]); j--) {
         newArr[j+1] = newArr[j];
       }
-      newArr[j+1] = ob;
+    newArr[j+1] = ob;
     }
-    return newArr;
+  return newArr;
   };
 
   // Zip together two or more arrays with elements of the same index
