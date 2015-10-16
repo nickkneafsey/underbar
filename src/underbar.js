@@ -404,6 +404,15 @@
   // Calls the method named by functionOrKey on each value in the list.
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
+    var newArray=[];
+    //code not working for second part of suite
+    //if (typeof(functionOrKey)==="string"){fucntionOrKey=window[functionOrKey](args);}
+    _.each(collection, function(item){
+      newArray.push(functionOrKey.apply(item, args));
+
+    })
+    return newArray;
+    
   };
 
   // Sort the object's values by a criterion produced by an iterator.
@@ -411,6 +420,17 @@
   // of that string. For example, _.sortBy(people, 'name') should sort
   // an array of people by their name.
   _.sortBy = function(collection, iterator) {
+    //insertion sort--not working quite correctly
+
+    var newArr=collection.slice();
+    for(var i=0; i < newArr.length; i++){
+      var ob = newArr[i]; 
+      for(var j = i - 1; j >= 0 && (newArr[j][iterator] > ob[iterator]); j--){
+        newArr[j+1] = newArr[j];
+      }
+      newArr[j+1] = ob;
+    }
+    return newArr;
   };
 
   // Zip together two or more arrays with elements of the same index
@@ -441,6 +461,18 @@
   //
   // Hint: Use Array.isArray to check if something is an array
   _.flatten = function(nestedArray, result) {
+    var newArray=[];
+    function test(nestedArray){
+      _.each(nestedArray, function(item){
+      if (Array.isArray(item)){
+        test(item);
+      } else {
+        newArray.push(item);
+      }
+    })
+    }
+    test(nestedArray);
+    return newArray;
   };
 
   // Takes an arbitrary number of arrays and produces an array that contains
@@ -483,5 +515,14 @@
   //
   // Note: This is difficult! It may take a while to implement.
   _.throttle = function(func, wait) {
+    var throttled =false;
+    var args = Array.prototype.slice.call(arguments, 2);
+    if(throttled===false){
+      func.apply(this,args);
+      throttled=true;
+    }
+    
+    setTimeout(function(){ throttled=false; }, wait);
+    //not working
   };
 }());
