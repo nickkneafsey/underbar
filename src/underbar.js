@@ -351,6 +351,7 @@
       }
       return results[test];
     };
+     
 
   };
 
@@ -405,7 +406,6 @@
   // Note: You will need to learn a bit about .apply to complete this.
   _.invoke = function(collection, functionOrKey, args) {
     var newArray=[];
-    //code not working for second part of suite
     
     _.each(collection, function(item){
       if (typeof(functionOrKey)==="string"){functionOrKey=item[functionOrKey];}
@@ -422,15 +422,25 @@
   _.sortBy = function(collection, iterator) {
     //insertion sort--not working quite correctly
 
-    var newArr=collection.slice();
-    for(var i=0; i < newArr.length; i++) {
-      var ob = newArr[i]; 
-      for(var j = i - 1; j >= 0 && (newArr[j][iterator] > ob[iterator]); j--) {
-        newArr[j+1] = newArr[j];
-      }
-    newArr[j+1] = ob;
-    }
-  return newArr;
+  //   var newArr=collection.slice();
+  //   for(var i=0; i < newArr.length; i++) {
+  //     var ob = newArr[i]; 
+  //     for(var j = i - 1; j >= 0 && (newArr[j][iterator] > ob[iterator]); j--) {
+  //       newArr[j+1] = newArr[j];
+  //     }
+  //   newArr[j+1] = ob;
+  //   }
+  // return newArr;
+    return collection.sort(function(x,y){
+      console.log(typeof(iterator));
+      if (typeof(iterator) === "function")
+        return iterator(x) - iterator(y);
+      else
+        return x[iterator] - y[iterator];
+    })
+    // console.log(array);
+    // return array;
+    //return collection.sort(iterator);
   };
 
   // Zip together two or more arrays with elements of the same index
